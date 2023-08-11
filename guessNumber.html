@@ -15,7 +15,7 @@
             <p>Guess a Number between <span class="min-num"></span> and <span class="max-num"></span>
             </p>
             <input type="number"  id="guess-input" placeholder="Enter your guess...">
-            <input type="submit" value="Submit" id="guess-btn">
+            <input type="submit" value="Submit" class="btn btn-control bg-primary text-white" id="guess-btn">
             <p class="message"></p>
         </div>
 
@@ -65,6 +65,8 @@
 
         //CHECK if You WON
         if (guess === winningNum) {
+
+            // gameOver(true, `${winningNum} is correct..YOU WIN`);
             //input disabled
             guess.disabled = true
 
@@ -75,12 +77,12 @@
             setMessage(`${winningNum} is correct..YOU WIN`, 'green', 'bold')
         }
 
+        //CHECK if You LOST
         else {
             // guessesLeft = guessesLeft -1
             guessesLeft -=1 
-        }
 
-        //GAME OVER You lost
+            //Game Over You lost
         if (guessesLeft === 0) {
             //input disabled
             guess.disabled = true
@@ -92,7 +94,7 @@
             setMessage(`Game Over,YOU LOST...The correct answer is ${winningNum}`, 'red', 'bold')
         }
 
-        //GAME CONTINUE - Answer wrong
+        //Game Continue - Answer wrong
         else {
             //borderColor
             guessInput.style.borderColor = 'red'
@@ -103,9 +105,28 @@
             //clear input
             guessInput.value = '';
         }
+        }
+
+        
+        
     })
 
+    // function gameOver(won, msg) {
+    //     let color;
+    //     won === true ? color = 'green' : color = 'red'
+
+    //     //input disabled
+    //         // guess.disabled = true
+
+    //         //borderColor
+    //         guessInput.style.borderColor = color;
+
+    //         //set message
+    //         setMessage(msg);  
+    // }
+
     function setMessage(msg, color, fontWeight) {
+        // let color;
         message.textContent = msg
         message.style.color = color
         message.style.fontWeight = fontWeight
